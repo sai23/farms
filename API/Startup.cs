@@ -49,6 +49,9 @@ namespace API
 
             app.UseRouting();
 
+            //This is right place to write logic for cors
+            app.UseCors(x=> x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
