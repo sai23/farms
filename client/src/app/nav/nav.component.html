@@ -1,28 +1,31 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Farming Technologies</a>
-      <ul class="navbar-nav mr-auto" *ngIf="accountService.currentUser$ | async" >
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Farms </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">News</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" >Technologies</a>
-        </li>
-        <li>
-          <div *ngIf="(accountService.currentUser$ | async)===null">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" *ngIf="accountService.currentUser$ | async" >Logout</button>
-        </div>
-        </li>
+        <a class="navbar-brand" routerLink="/" >Farming Technologies</a>
+      <ul class="navbar-nav mr-auto"  >
+        <ng-container *ngIf="accountService.currentUser$ | async">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/members" routerLinkActive="active" >Members </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/messages" routerLinkActive="active" >Messages</a>
+          </li>
+          <li>
+            <div *ngIf="(accountService.currentUser$ | async)===null">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" *ngIf="accountService.currentUser$ | async" >Logout</button>
+          </div>
+          </li>
+        </ng-container>
+        
       </ul>
-    <div *ngIf="accountService.currentUser$ | async" class="dropdown" dropdown>  
-        <a class="dropdown-toggle text-light" dropdownToggle>Welcome User</a>
+    <div *ngIf="(accountService.currentUser$ | async) as user" class="dropdown" dropdown>  
+        <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.username|titlecase}}</a>
       <div class="dropdown-menu" *dropdownMenu>
-      <a href="#" class="dropdown-item">Edit Profile</a>
-      <a href="#" class="dropdown-item">Manage Notifications</a>
-      <a href="#" class="dropdown-item" (click)="logout()">Log Out</a>
+      <a  class="dropdown-item">Edit Profile</a>
+      <a class="dropdown-item">Manage Notifications</a>
+      <a  class="dropdown-item" (click)="logout()">Log Out</a>
     </div>
     </div>
       <form *ngIf="(accountService.currentUser$ | async)===null" #loginform="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
