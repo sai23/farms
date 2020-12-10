@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErrorsComponent implements OnInit {
   baseUrl = 'https://localhost:5001/api/';
+  validationErrors : string[] = [];
   constructor(private http:HttpClient) { }
  
   ngOnInit(): void {
@@ -48,10 +49,11 @@ export class ErrorsComponent implements OnInit {
   }
     get400ValidationError()
     {
-      this.http.get(this.baseUrl+'buggy/not-found').subscribe(response=> {
+      this.http.get(this.baseUrl+'account/login').subscribe(response=> {
         console.log(response);
       },error=> {
         console.log(error);
+        this.validationErrors = error;
       })
     
   }

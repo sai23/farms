@@ -1,0 +1,16 @@
+<h4>Internal Server Error - Refreshing the page will reolve the error on the page.</h4>
+<ng-container *ngIf="error">
+    <h5 class="text-danger">
+        Error : {{error.message}}
+    </h5>
+    <p class="font-weight-bold">If you are seeing this error, please contact the admin</p>
+    <ol>
+        <li>Open dev tool</li>
+        <li>check the console</li>
+        <li>check the error there</li>
+    </ol>
+    <p class="mt-5 font-weight-bold;">Below are the details about the exceptions</p>
+    <p style="color: red">
+    {{error.details}}
+    </p>
+</ng-container>

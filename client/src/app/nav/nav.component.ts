@@ -27,8 +27,6 @@ export class NavComponent implements OnInit {
         this.router.navigateByUrl('/members');
       },error => {
             console.log(error);
-            this.toaster.error(error.error);
-            
       })
   }
 

@@ -1,4 +1,5 @@
 using API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -14,7 +15,8 @@ namespace API.Controllers
            _context = context;
        }
        
-       [HttpGet("Auth")]
+       [Authorize]
+       [HttpGet("auth")]
        public ActionResult<string> GetSecret()
        {
         return "secret";
@@ -26,7 +28,7 @@ namespace API.Controllers
             var thing =  _context.Users.Find(-1);
             if(thing ==null)
             {
-                return "secrect not found";
+                return NotFound();
             }
             return Ok(thing);
        }

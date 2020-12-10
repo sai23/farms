@@ -12,16 +12,16 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/messages" routerLinkActive="active" >Messages</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/errors" routerLinkActive="active" >Errors</a>
-          </li>
+        
           <li>
             <div *ngIf="(accountService.currentUser$ | async)===null">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit" *ngIf="accountService.currentUser$ | async" >Logout</button>
           </div>
           </li>
         </ng-container>
-        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/errors" routerLinkActive="active" >Errors</a>
+        </li>
       </ul>
     <div *ngIf="(accountService.currentUser$ | async) as user" class="dropdown" dropdown>  
         <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.username|titlecase}}</a>
